@@ -4,12 +4,14 @@
 Bem vindo ao sistema do NLW eSports.
 Desenhado pela [RockeatSeat](https://www.rocketseat.com.br/) para o NLW eSports esse sistema que integra web e mobile com o mesmo banco de dados, serve para juntar pessoas que querem o duo ideal na hora da gameplay.
 
-### Linguagens e frameworks utilizados
+## Linguagens e frameworks utilizados
 [ReactJS](https://pt-br.reactjs.org/)
 [TypeScript](https://www.typescriptlang.org/)
 [NodeJS](https://nodejs.org/en/)
 [React Native](https://reactnative.dev/)
-[Express](https://expressjs.com/pt-br/) 
+[Express](https://expressjs.com/pt-br/)
+[Tailwind](https://tailwindcss.com/) 
+[phosphor](https://phosphoricons.com/)
 
  - [ ] Back-end
  - [ ] Web
