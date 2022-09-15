@@ -14,6 +14,7 @@ Desenhado pela [RockeatSeat](https://www.rocketseat.com.br/) para o NLW eSports 
 [phosphor](https://phosphoricons.com/)
 [Prisma](https://www.prisma.io/)
 [SQLite](https://www.sqlite.org/index.html)
+[Radix UI](https://www.radix-ui.com/)
 
  - [X] Back-end
  - [ ] Web
