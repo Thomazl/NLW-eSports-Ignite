@@ -1,28 +1,36 @@
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { GameParams } from "../../@types/@navigation";
 
-import logoImg from '../../assets/logo-nlw-esports.png'
-import { Background } from "../../components/Background";
+import logoImg from "../../assets/logo-nlw-esports.png";
 import { Entypo } from "@expo/vector-icons";
 
 import { styles } from "./styles";
-import { THEME } from '../../theme';
-import { GameParams } from "../../@types/@navigation";
+import { THEME } from "../../theme";
+
+import { Background } from "../../components/Background";
 import { FlatList, Image, TouchableOpacity, View } from "react-native";
 import { Heading } from "../../components/Heading";
 import { DuoCard, DuoCardProps } from "../../components/DuoCard";
+import { DuoMatch } from "../../components/DuoMatch";
 
 export function Game() {
+  const [duos, setDuos] = useState<DuoCardProps[]>([]);
+  const [discordDuoSelected, setDiscordDuoSelected] = useState('')
 
-  const [duos, setDuos] = useState<DuoCardProps[]>([])
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const route = useRoute();
   const game = route.params as GameParams;
 
   function handleGoBack() {
     navigation.goBack();
+  }
+
+  async function getDiscordUser(adsId: string){
+    fetch(`http://192.168.15.111:3333/ads/${adsId}/discord`)
+    .then((response) => response.json())
+    .then((data) => setDiscordDuoSelected(data.discord));
   }
 
   useEffect(() => {
@@ -36,42 +44,39 @@ export function Game() {
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={handleGoBack}>
-            <Entypo 
-            name="chevron-thin-left"
-            color={THEME.COLORS.CAPTION_300}
-            size={20}
+            <Entypo
+              name="chevron-thin-left"
+              color={THEME.COLORS.CAPTION_300}
+              size={20}
             />
           </TouchableOpacity>
-          <Image 
-          source={logoImg}
-          style={styles.logo}
-          />
-          <View
-          style={styles.right}
-          />
+          <Image source={logoImg} style={styles.logo} />
+          <View style={styles.right} />
         </View>
-        <Image 
-        source={{uri: game.bannerUrl}}
-        style={styles.cover}
-        resizeMode="cover"
+        <Image
+          source={{ uri: game.bannerUrl }}
+          style={styles.cover}
+          resizeMode="cover"
         />
         <Heading title={game.title} subtitle="Conecte-se e comece a jogar!" />
-        
+
         <FlatList
           data={duos}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <DuoCard 
-            data={item}
-            onConnect={() =>{}} />
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <DuoCard data={item} onConnect={() => getDiscordUser(item.id)} />
           )}
           horizontal
           contentContainerStyle={styles.contentList}
           style={styles.containerList}
           showsHorizontalScrollIndicator={false}
-         />
+        />
+        <DuoMatch
+          visible={discordDuoSelected.length > 0 ? true : false}
+          discord={discordDuoSelected}
+          onClose={() => setDiscordDuoSelected('')}
+        />
       </SafeAreaView>
     </Background>
   );
 }
-
