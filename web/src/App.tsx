@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
 import logoImg from "./assets/Logo.svg";
 import "./styles/main.css";
@@ -22,10 +24,26 @@ function App() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    axios("http://localhost:3333/games").then(response => {
-        setGames(response.data);
-      });
+    axios("http://localhost:3333/games").then((response) => {
+      setGames(response.data);
+    });
   }, []);
+
+  const [sliderRef, instanceRef] = useKeenSlider(
+    {
+      slideChanged() {
+        console.log("slide changed");
+      },
+      loop: true,
+      drag: true,
+      slides: {
+        perView: 6,
+      }
+    },
+    [
+      // add plugins here
+    ]
+  );
 
   return (
     <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20">
@@ -39,7 +57,7 @@ function App() {
         esta aqui.
       </h1>
 
-      <div className="grid grid-cols-6 gap-6 mt-16">
+      <div ref={sliderRef} className="grid grid-cols-6 gap-6 mt-16 keen-slider">
         {games.map((game) => {
           return (
             <GameBanner
