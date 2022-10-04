@@ -17,8 +17,8 @@ Desenhado pela [RockeatSeat](https://www.rocketseat.com.br/) para o NLW eSports 
 [Radix UI](https://www.radix-ui.com/)
 
  - [X] Back-end
- - [ ] Web
- - [ ] Mobile
+ - [X] Web
+ - [X] Mobile
 
 ## Utils
 [Figma](https://www.figma.com/file/RzmKuHbkupVd5x3NciMOce/NLW-eSports-(Community)?node-id=0%3A1) do projeto 
