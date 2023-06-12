@@ -66,7 +66,7 @@ app.get('/games/:id/ads', async (request, response) => {
     }
   })
 
-  return response.json(ads.map(ad => {
+  return response.json(ads.map((ad: { weekDays: string; hourStart: number; hourEnd: number; }) => {
     return {
       ...ad,
       weekDays: ad.weekDays.split(','),
