@@ -27,6 +27,4 @@ model Ad {
   createAt        DateTime @default(now())
 
   game Game @relation(fields: [gameId], references: [id])
-
-  @@index([gameId])
 }
