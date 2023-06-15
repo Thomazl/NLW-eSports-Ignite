@@ -74,7 +74,7 @@ app.get('/games/:id/ads', async (request, response) => {
       hourEnd: convertMinutestoHourString(ad.hourEnd),
     }
   }))
-})
+});
 
 app.get('/ads/:id/discord', async (request, response) => {
   const adId = request.params.id;
@@ -91,5 +91,8 @@ app.get('/ads/:id/discord', async (request, response) => {
   return response.json({
     discord: ad.discord,
   })
-})
-app.listen(3333);
+});
+
+app.listen({
+  port: process.env.PORT? Number(process.env.PORT) : 3333,
+});
