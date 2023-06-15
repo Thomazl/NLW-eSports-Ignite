@@ -24,7 +24,7 @@ function App() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    axios("http://localhost:3333/games").then((response) => {
+    axios("https://nlw-esports-server-dadc.onrender.com/games").then((response) => {
       setGames(response.data);
     });
   }, []);

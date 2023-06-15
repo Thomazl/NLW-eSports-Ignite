@@ -20,7 +20,7 @@ export function CreateAdModal() {
   const [useVoiceChannel, setUseVoiceChannel] = useState(false)
 
   useEffect(() => {
-    axios("http://localhost:3333/games")
+    axios("https://nlw-esports-server-dadc.onrender.com/games")
       .then(response => {
         setGames(response.data);
       });
@@ -37,7 +37,7 @@ export function CreateAdModal() {
     }
 
   try{
-    axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+    axios.post(`https://nlw-esports-server-dadc.onrender.com/games/${data.game}/ads`, {
     name: data.name,
     yearsPlaying: Number(data.yearsPlaying),
     discord: data.discord,
